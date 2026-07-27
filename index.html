@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Clean & D-Day Tracker</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Retro/Pixel for Header, Display Serif for Subtitles, Bold Sans for Numbers -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Press+Start+2P&family=Rubik:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      background-color: #8C2D43; /* Rich Burgundy background */
+      color: #FFF2C6; /* Cream/Soft Gold text */
+      font-family: 'Rubik', sans-serif;
+    }
+    .font-pixel {
+      font-family: 'Press Start 2P', monospace;
+    }
+    .font-serif-title {
+      font-family: 'Cinzel', serif;
+    }
+    .bg-cream {
+      background-color: #FFF2C6;
+    }
+    .text-burgundy {
+      color: #8C2D43;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-between p-6 md:p-12 relative overflow-x-hidden">
+
+  <!-- Main Container -->
+  <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-12 my-auto items-center">
+    
+    <!-- Left & Middle Column: Countdown & Clean Tracker -->
+    <div class="md:col-span-2 flex flex-col items-center text-center space-y-8">
+      
+      <!-- Top Tagline -->
+      <h2 class="font-pixel text-xs sm:text-sm tracking-widest text-opacity-90 text-[#FFF2C6]">
+        NO LOOKING BACK.
+      </h2>
+
+      <!-- Main D-Day Big Number -->
+      <div class="flex flex-col items-center">
+        <span id="dday-count" class="text-8xl sm:text-9xl font-black tracking-tight leading-none drop-shadow-md">
+          0
+        </span>
+        <span class="font-serif-title text-sm sm:text-lg tracking-widest mt-2 uppercase border-b border-[#FFF2C6]/30 pb-4 px-8">
+          DAYS UNTIL D-DAY
+        </span>
+      </div>
+
+      <!-- Clean For Counter -->
+      <div class="w-full pt-4">
+        <h3 class="font-serif-title text-xs sm:text-sm tracking-widest mb-4 opacity-80 uppercase">
+          CLEAN FOR
+        </h3>
+        
+        <!-- Time Breakdown Grid -->
+        <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center max-w-lg mx-auto">
+          <div>
+            <div id="clean-yrs" class="text-xl sm:text-3xl font-extrabold">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">YRS</div>
+          </div>
+          <div>
+            <div id="clean-mos" class="text-xl sm:text-3xl font-extrabold">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">MOS</div>
+          </div>
+          <div>
+            <div id="clean-wks" class="text-xl sm:text-3xl font-extrabold">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">WKS</div>
+          </div>
+          <div>
+            <div id="clean-days" class="text-xl sm:text-3xl font-extrabold">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">DAYS</div>
+          </div>
+          <div>
+            <div id="clean-hrs" class="text-xl sm:text-3xl font-extrabold">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">HRS</div>
+          </div>
+          <div>
+            <div id="clean-min" class="text-xl sm:text-3xl font-extrabold">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">MIN</div>
+          </div>
+          <div>
+            <div id="clean-sec" class="text-xl sm:text-3xl font-extrabold">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">SEC</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right Column: Focus Timer -->
+    <div class="md:border-l border-[#FFF2C6]/20 md:pl-12 flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+      <h3 class="font-pixel text-xs sm:text-sm tracking-wider opacity-90">
+        FOCUS
+      </h3>
+      
+      <div id="timer-display" class="text-6xl sm:text-7xl font-black tracking-tight my-2">
+        25:00
+      </div>
+      
+      <div class="text-xs font-bold tracking-widest uppercase opacity-75">
+        WORK
+      </div>
+
+      <div class="flex space-x-3 pt-2">
+        <button id="start-btn" onclick="toggleTimer()" class="bg-cream text-burgundy font-extrabold px-6 py-2.5 rounded-md hover:bg-white transition-all shadow">
+          START
+        </button>
+        <button id="reset-btn" onclick="resetTimer()" class="bg-cream text-burgundy font-extrabold px-6 py-2.5 rounded-md hover:bg-white transition-all shadow">
+          RESET
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Settings Trigger & Panel -->
+  <div class="mt-8">
+    <button onclick="toggleSettings()" class="text-xs tracking-wider opacity-60 hover:opacity-100 underline transition">
+      ⚙️ Edit Dates & Settings
+    </button>
+  </div>
+
+  <!-- Settings Modal/Panel -->
+  <div id="settings-panel" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
+    <div class="bg-[#6B2233] border border-[#FFF2C6]/30 p-6 rounded-xl max-w-md w-full text-left space-y-4 shadow-2xl">
+      <h3 class="text-lg font-bold border-b border-[#FFF2C6]/20 pb-2">Custom Date Settings</h3>
+      
+      <div>
+        <label class="block text-xs font-bold mb-1 opacity-80">Target D-Day Date:</label>
+        <input type="datetime-local" id="dday-input" class="w-full p-2 rounded bg-[#8C2D43] text-cream border border-[#FFF2C6]/40 focus:outline-none text-sm">
+      </div>
+
+      <div>
+        <label class="block text-xs font-bold mb-1 opacity-80">Clean Since (Start Date):</label>
+        <input type="datetime-local" id="clean-input" class="w-full p-2 rounded bg-[#8C2D43] text-cream border border-[#FFF2C6]/40 focus:outline-none text-sm">
+      </div>
+
+      <div class="flex justify-end space-x-3 pt-4">
+        <button onclick="toggleSettings()" class="px-4 py-2 text-xs font-bold opacity-80 hover:opacity-100">Cancel</button>
+        <button onclick="saveSettings()" class="bg-cream text-burgundy px-5 py-2 rounded font-bold text-xs hover:bg-white">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Audio Element for Timer Completion Alarm -->
+  <audio id="alarm-sound" preload="auto">
+    <!-- Free Royalty-Free Chime Sound -->
+    <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
+  </audio>
+
+  <script>
+    // Local Storage or Defaults
+    let dDayTarget = localStorage.getItem('dday_date') 
+      ? new Date(localStorage.getItem('dday_date')) 
+      : new Date(Date.now() + 5 * 24 * 60 * 60 * 1000); // Default 5 days from now
+
+    let cleanStartDate = localStorage.getItem('clean_date') 
+      ? new Date(localStorage.getItem('clean_date')) 
+      : new Date(Date.now() - (19 * 24 * 60 * 60 * 1000 + 23 * 3600 * 1000 + 36 * 60 * 1000)); // Default ~2wks 5days
+
+    // Timer Variables
+    let timerDuration = 25 * 60; // 25 mins in seconds
+    let timeLeft = timerDuration;
+    let timerInterval = null;
+    let isRunning = false;
+
+    // Initialize Input Fields
+    document.getElementById('dday-input').value = dDayTarget.toISOString().slice(0, 16);
+    document.getElementById('clean-input').value = cleanStartDate.toISOString().slice(0, 16);
+
+    // Update Counters Function
+    function updateTrackers() {
+      const now = new Date();
+
+      // 1. D-Day Remaining Days Calculation
+      const dDayDiff = dDayTarget - now;
+      const daysLeft = Math.max(0, Math.ceil(dDayDiff / (1000 * 60 * 60 * 24)));
+      document.getElementById('dday-count').innerText = daysLeft;
+
+      // 2. Clean For Breakdown Calculation
+      let cleanDiff = Math.max(0, now - cleanStartDate);
+
+      const seconds = Math.floor((cleanDiff / 1000) % 60);
+      const minutes = Math.floor((cleanDiff / (1000 * 60)) % 60);
+      const hours = Math.floor((cleanDiff / (1000 * 60 * 60)) % 24);
+      
+      const totalDays = Math.floor(cleanDiff / (1000 * 60 * 60 * 24));
+      const years = Math.floor(totalDays / 365);
+      const months = Math.floor((totalDays % 365) / 30);
+      const weeks = Math.floor(((totalDays % 365) % 30) / 7);
+      const days = Math.floor(((totalDays % 365) % 30) % 7);
+
+      document.getElementById('clean-yrs').innerText = years;
+      document.getElementById('clean-mos').innerText = months;
+      document.getElementById('clean-wks').innerText = weeks;
+      document.getElementById('clean-days').innerText = days;
+      document.getElementById('clean-hrs').innerText = hours;
+      document.getElementById('clean-min').innerText = minutes;
+      document.getElementById('clean-sec').innerText = seconds;
+    }
+
+    setInterval(updateTrackers, 1000);
+    updateTrackers();
+
+    // Timer Functions
+    function updateTimerDisplay() {
+      const mins = Math.floor(timeLeft / 60);
+      const secs = timeLeft % 60;
+      document.getElementById('timer-display').innerText = 
+        `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+    }
+
+    function toggleTimer() {
+      const btn = document.getElementById('start-btn');
+      if (isRunning) {
+        clearInterval(timerInterval);
+        isRunning = false;
+        btn.innerText = 'START';
+      } else {
+        isRunning = true;
+        btn.innerText = 'PAUSE';
+        timerInterval = setInterval(() => {
+          if (timeLeft > 0) {
+            timeLeft--;
+            updateTimerDisplay();
+          } else {
+            clearInterval(timerInterval);
+            isRunning = false;
+            btn.innerText = 'START';
+            playAlarm();
+          }
+        }, 1000);
+      }
+    }
+
+    function resetTimer() {
+      clearInterval(timerInterval);
+      isRunning = false;
+      timeLeft = timerDuration;
+      document.getElementById('start-btn').innerText = 'START';
+      updateTimerDisplay();
+    }
+
+    function playAlarm() {
+      const audio = document.getElementById('alarm-sound');
+      audio.currentTime = 0;
+      audio.play().catch(e => console.log("Audio play blocked by browser:", e));
+    }
+
+    // Modal & Settings Functions
+    function toggleSettings() {
+      document.getElementById('settings-panel').classList.toggle('hidden');
+    }
+
+    function saveSettings() {
+      const ddayVal = document.getElementById('dday-input').value;
+      const cleanVal = document.getElementById('clean-input').value;
+
+      if (ddayVal) {
+        dDayTarget = new Date(ddayVal);
+        localStorage.setItem('dday_date', ddayVal);
+      }
+      if (cleanVal) {
+        cleanStartDate = new Date(cleanVal);
+        localStorage.setItem('clean_date', cleanVal);
+      }
+
+      updateTrackers();
+      toggleSettings();
+    }
+  </script>
+</body>
+</html>
