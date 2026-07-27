@@ -1,130 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Clean & D-Day Tracker</title>
+  
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts -->
+  
+  <!-- Google Fonts: Retro/Pixel for Header, Display Serif for Subtitles, Bold Sans for Numbers -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=VT323&family=Cinzel:wght@400;600;700;800;900&family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Press+Start+2P&family=Rubik:wght@700;800;900&display=swap" rel="stylesheet">
+
   <style>
     body {
-      background-color: #932943;
-      color: #FFF2CC;
-      font-family: 'Inter', sans-serif;
+      background-color: #a32e52; /* New Background */
+      color: #ffd6de; /* New Default Text Color */
+      font-family: 'Rubik', sans-serif;
     }
     .font-pixel {
-      font-family: 'VT323', monospace;
+      font-family: 'Press Start 2P', monospace;
     }
-    .font-serif-custom {
+    .font-serif-title {
       font-family: 'Cinzel', serif;
     }
+    
+    /* New Custom Color Utilities */
     .text-yellow-custom {
-      color: #FFF2CC;
+      color: #fff8b6;
     }
     .text-pink-custom {
-      color: #F8C8DC;
+      color: #ffd6de;
     }
-    .bg-card {
-      background-color: rgba(255, 255, 255, 0.05);
+    .bg-yellow-custom {
+      background-color: #fff8b6;
+    }
+    .bg-pink-custom {
+      background-color: #ffd6de;
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4 selection:bg-pink-300 selection:text-pink-900">
+<body class="min-h-screen flex flex-col items-center justify-between p-6 md:p-12 relative overflow-x-hidden">
 
-  <div class="w-full max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 py-8">
+  <!-- Main Container -->
+  <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-3 gap-12 my-auto items-center">
     
-    <!-- Left Section: D-Day & Clean Tracker -->
-    <div class="w-full md:w-2/3 flex flex-col items-center text-center space-y-8">
+    <!-- Left & Middle Column: Countdown & Clean Tracker -->
+    <div class="md:col-span-2 flex flex-col items-center text-center space-y-8">
       
-      <!-- Top Pixel Banner -->
-      <h1 class="font-pixel text-2xl sm:text-3xl tracking-widest uppercase text-yellow-custom">
+      <!-- Top Tagline -->
+      <h2 class="font-pixel text-xs sm:text-sm tracking-widest text-pink-custom">
         NO LOOKING BACK.
-      </h1>
+      </h2>
 
-      <!-- D-Day Display -->
+      <!-- Main D-Day Big Number -->
       <div class="flex flex-col items-center">
-        <div id="dday-count" class="text-7xl sm:text-9xl font-black tracking-tight text-yellow-custom leading-none">
-          5
-        </div>
-        <div class="font-serif-custom text-sm sm:text-base font-bold tracking-widest text-pink-custom mt-2 uppercase">
+        <span id="dday-count" class="text-8xl sm:text-9xl font-black tracking-tight leading-none drop-shadow-md text-yellow-custom">
+          0
+        </span>
+        <span class="font-serif-title text-sm sm:text-lg tracking-widest mt-2 uppercase border-b border-[#ffd6de]/30 pb-4 px-8 text-yellow-custom">
           DAYS UNTIL D-DAY
-        </div>
+        </span>
       </div>
 
-      <hr class="w-3/4 border-pink-custom/20 my-2">
-
-      <!-- Clean For Section -->
-      <div class="w-full flex flex-col items-center">
-        <h2 class="font-serif-custom text-xs sm:text-sm font-semibold tracking-widest text-pink-custom mb-4 uppercase">
+      <!-- Clean For Counter -->
+      <div class="w-full pt-4">
+        <h3 class="font-serif-title text-xs sm:text-sm tracking-widest mb-4 uppercase text-pink-custom">
           CLEAN FOR
-        </h2>
-
-        <!-- Clean Grid -->
-        <div class="grid grid-cols-7 gap-2 sm:gap-4 w-full text-center">
+        </h3>
+        
+        <!-- Time Breakdown Grid -->
+        <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center max-w-lg mx-auto">
           <div>
             <div id="clean-yrs" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
-            <div class="font-serif-custom text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom tracking-wider">YRS</div>
+            <div class="text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom">YRS</div>
           </div>
           <div>
             <div id="clean-mos" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
-            <div class="font-serif-custom text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom tracking-wider">MOS</div>
+            <div class="text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom">MOS</div>
           </div>
           <div>
             <div id="clean-wks" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
-            <div class="font-serif-custom text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom tracking-wider">WKS</div>
+            <div class="text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom">WKS</div>
           </div>
           <div>
             <div id="clean-days" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
-            <div class="font-serif-custom text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom tracking-wider">DAYS</div>
+            <div class="text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom">DAYS</div>
           </div>
           <div>
             <div id="clean-hrs" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
-            <div class="font-serif-custom text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom tracking-wider">HRS</div>
+            <div class="text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom">HRS</div>
           </div>
           <div>
             <div id="clean-min" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
-            <div class="font-serif-custom text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom tracking-wider">MIN</div>
+            <div class="text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom">MIN</div>
           </div>
           <div>
             <div id="clean-sec" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
-            <div class="font-serif-custom text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom tracking-wider">SEC</div>
+            <div class="text-[10px] sm:text-xs font-normal opacity-80 mt-1 text-pink-custom">SEC</div>
           </div>
-        </div>
+        
       </div>
 
-      <!-- Settings Button -->
-      <button onclick="toggleSettingsModal()" class="text-xs text-pink-custom/70 hover:text-pink-custom flex items-center gap-1 transition-colors mt-4">
-        ⚙️ Edit Dates & Settings
-      </button>
     </div>
 
-    <!-- Right Section: Focus Timer -->
-    <div class="w-full md:w-1/3 border-t md:border-t-0 md:border-l border-pink-custom/20 pt-8 md:pt-0 md:pl-12 flex flex-col items-center md:items-start text-center md:text-left space-y-6">
-      
-      <h2 class="font-pixel text-2xl tracking-widest text-yellow-custom uppercase">
+    <!-- Right Column: Focus Timer -->
+    <div class="md:border-l border-[#ffd6de]/20 md:pl-12 flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+      <h3 class="font-pixel text-xs sm:text-sm tracking-wider text-pink-custom">
         FOCUS
-      </h2>
-
-      <div class="flex flex-col items-center md:items-start">
-        <div id="timer-display" class="text-6xl sm:text-7xl font-black text-yellow-custom tracking-tight leading-none">
-          25:00
-        </div>
-        <div class="font-serif-custom text-xs font-normal tracking-widest uppercase text-pink-custom opacity-80 mt-2">
-          WORK
-        </div>
+      </h3>
+      
+      <div id="timer-display" class="text-6xl sm:text-7xl font-black tracking-tight my-2 text-yellow-custom">
+        25:00
+      </div>
+      
+      <div class="text-xs font-normal tracking-widest uppercase text-pink-custom opacity-80">
+        WORK
       </div>
 
-      <!-- Timer Controls -->
-      <div class="flex gap-3 w-full justify-center md:justify-start pt-2">
-        <button id="start-btn" onclick="toggleTimer()" class="px-6 py-2 bg-[#F8C8DC] text-[#932943] font-bold text-sm rounded hover:bg-opacity-90 transition-all uppercase tracking-wider">
+      <div class="flex space-x-3 pt-2">
+        <button id="start-btn" onclick="toggleTimer()" class="bg-pink-custom text-[#a32e52] font-extrabold px-6 py-2.5 rounded-md hover:bg-white transition-all shadow">
           START
         </button>
-        <button onclick="resetTimer()" class="px-6 py-2 bg-[#FFF2CC] text-[#932943] font-bold text-sm rounded hover:bg-opacity-90 transition-all uppercase tracking-wider">
+        <button id="reset-btn" onclick="resetTimer()" class="bg-yellow-custom text-[#a32e52] font-extrabold px-6 py-2.5 rounded-md hover:bg-white transition-all shadow">
           RESET
         </button>
       </div>
@@ -132,50 +131,61 @@
 
   </div>
 
-  <!-- Settings Modal -->
-  <div id="settings-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center hidden p-4 z-50">
-    <div class="bg-[#722034] border border-pink-custom/30 rounded-xl p-6 w-full max-w-md text-yellow-custom space-y-4 shadow-2xl">
-      <h3 class="text-xl font-bold font-serif-custom">Edit Target Dates</h3>
+  <!-- Settings Trigger & Panel -->
+  <div class="mt-8">
+    <button onclick="toggleSettings()" class="text-xs tracking-wider opacity-70 hover:opacity-100 underline transition text-pink-custom">
+      ⚙️ Edit Dates & Settings
+    </button>
+  </div>
+
+  <!-- Settings Modal/Panel -->
+  <div id="settings-panel" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
+    <div class="bg-[#83223f] border border-[#ffd6de]/30 p-6 rounded-xl max-w-md w-full text-left space-y-4 shadow-2xl text-pink-custom">
+      <h3 class="text-lg font-bold border-b border-[#ffd6de]/20 pb-2 text-yellow-custom">Custom Date Settings</h3>
       
-      <div class="space-y-3 text-sm">
-        <div>
-          <label class="block text-xs font-semibold text-pink-custom mb-1">D-DAY TARGET DATE</label>
-          <input type="datetime-local" id="dday-input" class="w-full p-2 rounded bg-black/30 border border-pink-custom/40 text-yellow-custom focus:outline-none focus:border-pink-custom">
-        </div>
-        <div>
-          <label class="block text-xs font-semibold text-pink-custom mb-1">CLEAN START DATE</label>
-          <input type="datetime-local" id="clean-input" class="w-full p-2 rounded bg-black/30 border border-pink-custom/40 text-yellow-custom focus:outline-none focus:border-pink-custom">
-        </div>
+      <div>
+        <label class="block text-xs font-bold mb-1 opacity-80">Target D-Day Date:</label>
+        <input type="datetime-local" id="dday-input" class="w-full p-2 rounded bg-[#a32e52] text-pink-custom border border-[#ffd6de]/40 focus:outline-none text-sm">
       </div>
 
-      <div class="flex justify-end gap-2 pt-2">
-        <button onclick="toggleSettingsModal()" class="px-4 py-2 text-xs text-pink-custom hover:underline">Cancel</button>
-        <button onclick="saveSettings()" class="px-4 py-2 bg-pink-custom text-[#932943] font-bold text-xs rounded hover:bg-opacity-90">Save Changes</button>
+      <div>
+        <label class="block text-xs font-bold mb-1 opacity-80">Clean Since (Start Date):</label>
+        <input type="datetime-local" id="clean-input" class="w-full p-2 rounded bg-[#a32e52] text-pink-custom border border-[#ffd6de]/40 focus:outline-none text-sm">
+      </div>
+
+      <div class="flex justify-end space-x-3 pt-4">
+        <button onclick="toggleSettings()" class="px-4 py-2 text-xs font-bold opacity-80 hover:opacity-100">Cancel</button>
+        <button onclick="saveSettings()" class="bg-yellow-custom text-[#a32e52] px-5 py-2 rounded font-bold text-xs hover:bg-white">Save Changes</button>
       </div>
     </div>
   </div>
 
+  <!-- Audio Element for Timer Completion Alarm -->
+  <audio id="alarm-sound" preload="auto">
+    <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
+  </audio>
+
   <script>
-    // Load or initialize dates
+    // Local Storage or Defaults
     let dDayTarget = localStorage.getItem('dday_date') 
       ? new Date(localStorage.getItem('dday_date')) 
-      : new Date(Date.now() + 5 * 24 * 60 * 60 * 1000);
+      : new Date(Date.now() + 5 * 24 * 60 * 60 * 1000); // Default 5 days from now
 
     let cleanStartDate = localStorage.getItem('clean_date') 
       ? new Date(localStorage.getItem('clean_date')) 
-      : new Date(Date.now() - (19 * 24 * 60 * 60 * 1000 + 23 * 3600 * 1000 + 36 * 60 * 1000));
+      : new Date(Date.now() - (19 * 24 * 60 * 60 * 1000 + 23 * 3600 * 1000 + 36 * 60 * 1000)); // Default ~2wks 5days
 
     // Timer Variables
-    let timerDuration = 25 * 60; 
+    let timerDuration = 25 * 60; // 25 mins in seconds
     let timeLeft = timerDuration;
     let timerInterval = null;
     let isRunning = false;
 
-    // Initialize Inputs
+    // Initialize Input Fields
     document.getElementById('dday-input').value = dDayTarget.toISOString().slice(0, 16);
     document.getElementById('clean-input').value = cleanStartDate.toISOString().slice(0, 16);
 
-    // Live Tracker Calculation
+    // Update Counters Function
     function updateTrackers() {
       const now = new Date();
 
@@ -190,8 +200,8 @@
       const seconds = Math.floor((cleanDiff / 1000) % 60);
       const minutes = Math.floor((cleanDiff / (1000 * 60)) % 60);
       const hours = Math.floor((cleanDiff / (1000 * 60 * 60)) % 24);
+      
       const totalDays = Math.floor(cleanDiff / (1000 * 60 * 60 * 24));
-
       const years = Math.floor(totalDays / 365);
       const months = Math.floor((totalDays % 365) / 30);
       const weeks = Math.floor(((totalDays % 365) % 30) / 7);
@@ -206,15 +216,15 @@
       document.getElementById('clean-sec').innerText = seconds;
     }
 
-    // Run every second for live updates
     setInterval(updateTrackers, 1000);
     updateTrackers();
 
-    // Timer Logic
+    // Timer Functions
     function updateTimerDisplay() {
       const mins = Math.floor(timeLeft / 60);
       const secs = timeLeft % 60;
-      document.getElementById('timer-display').innerText = `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+      document.getElementById('timer-display').innerText = 
+        `${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
     }
 
     function toggleTimer() {
@@ -234,6 +244,7 @@
             clearInterval(timerInterval);
             isRunning = false;
             btn.innerText = 'START';
+            playAlarm();
           }
         }, 1000);
       }
@@ -247,27 +258,32 @@
       updateTimerDisplay();
     }
 
-    // Modal & Settings Handlers
-    function toggleSettingsModal() {
-      const modal = document.getElementById('settings-modal');
-      modal.classList.toggle('hidden');
+    function playAlarm() {
+      const audio = document.getElementById('alarm-sound');
+      audio.currentTime = 0;
+      audio.play().catch(e => console.log("Audio play blocked by browser:", e));
+    }
+
+    // Modal & Settings Functions
+    function toggleSettings() {
+      document.getElementById('settings-panel').classList.toggle('hidden');
     }
 
     function saveSettings() {
-      const newDday = document.getElementById('dday-input').value;
-      const newClean = document.getElementById('clean-input').value;
+      const ddayVal = document.getElementById('dday-input').value;
+      const cleanVal = document.getElementById('clean-input').value;
 
-      if (newDday) {
-        dDayTarget = new Date(newDday);
-        localStorage.setItem('dday_date', dDayTarget.toISOString());
+      if (ddayVal) {
+        dDayTarget = new Date(ddayVal);
+        localStorage.setItem('dday_date', ddayVal);
       }
-      if (newClean) {
-        cleanStartDate = new Date(newClean);
-        localStorage.setItem('clean_date', cleanStartDate.toISOString());
+      if (cleanVal) {
+        cleanStartDate = new Date(cleanVal);
+        localStorage.setItem('clean_date', cleanVal);
       }
 
       updateTrackers();
-      toggleSettingsModal();
+      toggleSettings();
     }
   </script>
 </body>
