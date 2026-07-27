@@ -15,8 +15,8 @@
 
   <style>
     body {
-      background-color: #8C2D43; /* Rich Burgundy background */
-      color: #FFF2C6; /* Cream/Soft Gold text */
+      background-color: #a32e52; /* New Background */
+      color: #ffd6de; /* New Default Text Color */
       font-family: 'Rubik', sans-serif;
     }
     .font-pixel {
@@ -25,11 +25,19 @@
     .font-serif-title {
       font-family: 'Cinzel', serif;
     }
-    .bg-cream {
-      background-color: #FFF2C6;
+    
+    /* New Custom Color Utilities */
+    .text-yellow-custom {
+      color: #fff8b6;
     }
-    .text-burgundy {
-      color: #8C2D43;
+    .text-pink-custom {
+      color: #ffd6de;
+    }
+    .bg-yellow-custom {
+      background-color: #fff8b6;
+    }
+    .bg-pink-custom {
+      background-color: #ffd6de;
     }
   </style>
 </head>
@@ -42,55 +50,55 @@
     <div class="md:col-span-2 flex flex-col items-center text-center space-y-8">
       
       <!-- Top Tagline -->
-      <h2 class="font-pixel text-xs sm:text-sm tracking-widest text-opacity-90 text-[#FFF2C6]">
+      <h2 class="font-pixel text-xs sm:text-sm tracking-widest text-pink-custom">
         NO LOOKING BACK.
       </h2>
 
       <!-- Main D-Day Big Number -->
       <div class="flex flex-col items-center">
-        <span id="dday-count" class="text-8xl sm:text-9xl font-black tracking-tight leading-none drop-shadow-md">
+        <span id="dday-count" class="text-8xl sm:text-9xl font-black tracking-tight leading-none drop-shadow-md text-yellow-custom">
           0
         </span>
-        <span class="font-serif-title text-sm sm:text-lg tracking-widest mt-2 uppercase border-b border-[#FFF2C6]/30 pb-4 px-8">
+        <span class="font-serif-title text-sm sm:text-lg tracking-widest mt-2 uppercase border-b border-[#ffd6de]/30 pb-4 px-8 text-yellow-custom">
           DAYS UNTIL D-DAY
         </span>
       </div>
 
       <!-- Clean For Counter -->
       <div class="w-full pt-4">
-        <h3 class="font-serif-title text-xs sm:text-sm tracking-widest mb-4 opacity-80 uppercase">
+        <h3 class="font-serif-title text-xs sm:text-sm tracking-widest mb-4 uppercase text-pink-custom">
           CLEAN FOR
         </h3>
         
         <!-- Time Breakdown Grid -->
         <div class="grid grid-cols-7 gap-1 sm:gap-2 text-center max-w-lg mx-auto">
           <div>
-            <div id="clean-yrs" class="text-xl sm:text-3xl font-extrabold">0</div>
-            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">YRS</div>
+            <div id="clean-yrs" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1 text-pink-custom">YRS</div>
           </div>
           <div>
-            <div id="clean-mos" class="text-xl sm:text-3xl font-extrabold">0</div>
-            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">MOS</div>
+            <div id="clean-mos" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1 text-pink-custom">MOS</div>
           </div>
           <div>
-            <div id="clean-wks" class="text-xl sm:text-3xl font-extrabold">0</div>
-            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">WKS</div>
+            <div id="clean-wks" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1 text-pink-custom">WKS</div>
           </div>
           <div>
-            <div id="clean-days" class="text-xl sm:text-3xl font-extrabold">0</div>
-            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">DAYS</div>
+            <div id="clean-days" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1 text-pink-custom">DAYS</div>
           </div>
           <div>
-            <div id="clean-hrs" class="text-xl sm:text-3xl font-extrabold">0</div>
-            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">HRS</div>
+            <div id="clean-hrs" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1 text-pink-custom">HRS</div>
           </div>
           <div>
-            <div id="clean-min" class="text-xl sm:text-3xl font-extrabold">0</div>
-            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">MIN</div>
+            <div id="clean-min" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1 text-pink-custom">MIN</div>
           </div>
           <div>
-            <div id="clean-sec" class="text-xl sm:text-3xl font-extrabold">0</div>
-            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1">SEC</div>
+            <div id="clean-sec" class="text-xl sm:text-3xl font-extrabold text-yellow-custom">0</div>
+            <div class="text-[10px] sm:text-xs font-bold opacity-75 mt-1 text-pink-custom">SEC</div>
           </div>
         </div>
       </div>
@@ -98,24 +106,24 @@
     </div>
 
     <!-- Right Column: Focus Timer -->
-    <div class="md:border-l border-[#FFF2C6]/20 md:pl-12 flex flex-col items-center md:items-start text-center md:text-left space-y-4">
-      <h3 class="font-pixel text-xs sm:text-sm tracking-wider opacity-90">
+    <div class="md:border-l border-[#ffd6de]/20 md:pl-12 flex flex-col items-center md:items-start text-center md:text-left space-y-4">
+      <h3 class="font-pixel text-xs sm:text-sm tracking-wider text-pink-custom">
         FOCUS
       </h3>
       
-      <div id="timer-display" class="text-6xl sm:text-7xl font-black tracking-tight my-2">
+      <div id="timer-display" class="text-6xl sm:text-7xl font-black tracking-tight my-2 text-yellow-custom">
         25:00
       </div>
       
-      <div class="text-xs font-bold tracking-widest uppercase opacity-75">
+      <div class="text-xs font-bold tracking-widest uppercase text-pink-custom opacity-80">
         WORK
       </div>
 
       <div class="flex space-x-3 pt-2">
-        <button id="start-btn" onclick="toggleTimer()" class="bg-cream text-burgundy font-extrabold px-6 py-2.5 rounded-md hover:bg-white transition-all shadow">
+        <button id="start-btn" onclick="toggleTimer()" class="bg-pink-custom text-[#a32e52] font-extrabold px-6 py-2.5 rounded-md hover:bg-white transition-all shadow">
           START
         </button>
-        <button id="reset-btn" onclick="resetTimer()" class="bg-cream text-burgundy font-extrabold px-6 py-2.5 rounded-md hover:bg-white transition-all shadow">
+        <button id="reset-btn" onclick="resetTimer()" class="bg-yellow-custom text-[#a32e52] font-extrabold px-6 py-2.5 rounded-md hover:bg-white transition-all shadow">
           RESET
         </button>
       </div>
@@ -125,36 +133,35 @@
 
   <!-- Settings Trigger & Panel -->
   <div class="mt-8">
-    <button onclick="toggleSettings()" class="text-xs tracking-wider opacity-60 hover:opacity-100 underline transition">
+    <button onclick="toggleSettings()" class="text-xs tracking-wider opacity-70 hover:opacity-100 underline transition text-pink-custom">
       ⚙️ Edit Dates & Settings
     </button>
   </div>
 
   <!-- Settings Modal/Panel -->
   <div id="settings-panel" class="hidden fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
-    <div class="bg-[#6B2233] border border-[#FFF2C6]/30 p-6 rounded-xl max-w-md w-full text-left space-y-4 shadow-2xl">
-      <h3 class="text-lg font-bold border-b border-[#FFF2C6]/20 pb-2">Custom Date Settings</h3>
+    <div class="bg-[#83223f] border border-[#ffd6de]/30 p-6 rounded-xl max-w-md w-full text-left space-y-4 shadow-2xl text-pink-custom">
+      <h3 class="text-lg font-bold border-b border-[#ffd6de]/20 pb-2 text-yellow-custom">Custom Date Settings</h3>
       
       <div>
         <label class="block text-xs font-bold mb-1 opacity-80">Target D-Day Date:</label>
-        <input type="datetime-local" id="dday-input" class="w-full p-2 rounded bg-[#8C2D43] text-cream border border-[#FFF2C6]/40 focus:outline-none text-sm">
+        <input type="datetime-local" id="dday-input" class="w-full p-2 rounded bg-[#a32e52] text-pink-custom border border-[#ffd6de]/40 focus:outline-none text-sm">
       </div>
 
       <div>
         <label class="block text-xs font-bold mb-1 opacity-80">Clean Since (Start Date):</label>
-        <input type="datetime-local" id="clean-input" class="w-full p-2 rounded bg-[#8C2D43] text-cream border border-[#FFF2C6]/40 focus:outline-none text-sm">
+        <input type="datetime-local" id="clean-input" class="w-full p-2 rounded bg-[#a32e52] text-pink-custom border border-[#ffd6de]/40 focus:outline-none text-sm">
       </div>
 
       <div class="flex justify-end space-x-3 pt-4">
         <button onclick="toggleSettings()" class="px-4 py-2 text-xs font-bold opacity-80 hover:opacity-100">Cancel</button>
-        <button onclick="saveSettings()" class="bg-cream text-burgundy px-5 py-2 rounded font-bold text-xs hover:bg-white">Save Changes</button>
+        <button onclick="saveSettings()" class="bg-yellow-custom text-[#a32e52] px-5 py-2 rounded font-bold text-xs hover:bg-white">Save Changes</button>
       </div>
     </div>
   </div>
 
   <!-- Audio Element for Timer Completion Alarm -->
   <audio id="alarm-sound" preload="auto">
-    <!-- Free Royalty-Free Chime Sound -->
     <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg" type="audio/ogg">
   </audio>
 
@@ -205,6 +212,7 @@
       document.getElementById('clean-wks').innerText = weeks;
       document.getElementById('clean-days').innerText = days;
       document.getElementById('clean-hrs').innerText = hours;
+      document.getElementById('clean-[#min]').innerText = minutes; // kept reference standard
       document.getElementById('clean-min').innerText = minutes;
       document.getElementById('clean-sec').innerText = seconds;
     }
